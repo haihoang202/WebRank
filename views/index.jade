@@ -1,0 +1,17 @@
+doctype
+html
+ include header.html
+ body
+   div(class="container")
+    form(id="the-basics" name="crawl", action="/crawl", method="post", class="form-group")
+      h1 SpiRank
+      input(class="typeahead", name="country", type="text", placeholder="Countries")
+      br
+      br
+      input(class="btn btn-default", type="submit", value="Crawl")
+    block content
+
+    script(type='text/javascript').
+      var local_data =!{JSON.stringify(countries)};
+      console.log(local_data.length);
+    include ../public/js/script.js
