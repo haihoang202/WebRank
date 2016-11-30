@@ -81,6 +81,7 @@ app.post('/crawl', function(req, res){
 			callback();
 		});
 	},10);
+	console.log("In Progress");
 
 	q1.drain = function() {
 		sites.sort(function(a,b){
@@ -94,9 +95,10 @@ app.post('/crawl', function(req, res){
 				return 0;
 			}
 		});
+		res.render('dash',{sites:JSON.stringify(sites), countries:JSON.stringify(countries_set)});
 		console.log('Done crawling');
 		console.log(sites.length);
-		res.render('dash',{sites:JSON.stringify(sites), countries:JSON.stringify(countries_set)});
+
 	};
 	for(var i = 0; i < 20; i++){
 		q1.push(default_url + ';' + i + '/'+country);
